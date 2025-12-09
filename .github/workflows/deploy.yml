@@ -35,7 +35,7 @@ jobs:
           path: 'dist/ecommerce-app/browser'
 
   deploy:
-    needs: build # Este job depende de que 'build' termine
+    needs: build-and-deploy
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -43,4 +43,4 @@ jobs:
     steps:
       - name: Desplegar a GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4[citation:1]
+        uses: actions/deploy-pages@v4
