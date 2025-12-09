@@ -1,0 +1,36 @@
+name: Deploy Angular to GitHub Pages
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir y Publicar
+        id: deployment # Este ID permite usar `outputs` más tarde
+        uses: bitovi/github-actions-angular-to-github-pages@v1.0.0[citation:3]
+        with:
+          # La configuración por defecto ya es para Angular.
+          # Asegúrate de que `path` apunte a tu carpeta de build.
+          # Para Angular 17+, a menudo es 'dist/<nombre-proyecto>/browser'[citation:2].
+          path: dist/<nombre-proyecto>/browser
