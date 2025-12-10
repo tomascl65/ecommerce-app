@@ -1,0 +1,13 @@
+/* Importa el motor de Tailwind CSS v4 */
+@import "tailwindcss";
+
+/* Opcional: Define tu tema personalizado aquí con @theme */
+@theme {
+  --color-primary: #3b82f6; /* Ejemplo: define un color personalizado */
+  --font-family-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Tus estilos personalizados van después */
+body {
+  font-family: var(--font-family-sans);
+}
