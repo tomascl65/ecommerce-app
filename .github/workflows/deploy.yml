@@ -1,7 +1,9 @@
-name: Deploy Angular to GitHub Pages
+name: Desplegar Angular en GitHub Pages
+
 on:
   push:
-    branches: [main]
+    branches:
+      - "master"
 
 permissions:
   contents: read
@@ -9,38 +11,8 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Instalar dependencias
-        run: npm ci
-
-      - name: Construir y Publicar
-        run: npm run build -- --base-href="/ecommerce-app/"
-
-      - name: Subir artefacto
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'dist/ecommerce-app/browser'
-
   deploy:
-    needs: build-and-deploy
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Desplegar a GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - id: build-publish
+      uses: bitovi/github-actions-angular-to-github-pages@v1.0.0
