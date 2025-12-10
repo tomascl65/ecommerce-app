@@ -5,7 +5,7 @@ import { SimpleExampleComponent } from './components/simple-example.component';
 import { TestClickDirectiveComponent } from './components/test-click-directive.component';
 import { SimpleClickExampleComponent } from './components/simple-click-example.component';
 import { ProductService } from './services/product.service';
-import { Product } from './models/product.model';
+import { Product, ProductWithDetails } from './models/product.model';
 
 @Component({
   selector: 'app-root',
@@ -25,12 +25,14 @@ export class App implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe({
-      next: (products: Product[]) => {
-        console.log('Productos:', products);
+    // Usar el nuevo método con llamadas anidadas
+    this.productService.getProductsWithDetails().subscribe({
+      next: (products: ProductWithDetails[]) => {
+        console.log('Productos con detalles:', products);
+        console.log('Primer producto con detailedDescription:', products[0]);
       },
       error: (error) => {
-        console.error('Error al obtener productos:', error);
+        console.error('Error al obtener productos con detalles:', error);
       }
     });
   }

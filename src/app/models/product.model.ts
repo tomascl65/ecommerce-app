@@ -10,3 +10,7 @@ export interface Product {
     count: number;
   };
 }
+
+export interface ProductWithDetails extends Product {
+  detailedDescription: string;
+}
