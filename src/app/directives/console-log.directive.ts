@@ -1,10 +1,10 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appClickLogger]',
+  selector: '[appConsoleLog]',
   standalone: true
 })
-export class ClickLoggerDirective {
+export class ConsoleLogDirective {
   constructor(private elementRef: ElementRef) {}
 
   @HostListener('click') onClick() {

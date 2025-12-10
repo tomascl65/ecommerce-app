@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClickLoggerDirective } from '../directives/click-logger.directive';
+import { ConsoleLogDirective } from '../directives/console-log.directive';
 
 @Component({
   selector: 'app-test-click-directive',
   standalone: true,
-  imports: [CommonModule, ClickLoggerDirective],
+  imports: [CommonModule, ConsoleLogDirective],
   template: `
     <div>
-      <h2>Prueba de la Directiva clickLogger</h2>
+      <h2>Prueba de la Directiva consoleLog</h2>
       
       <div>
         <h3>Ejemplos de uso de la directiva:</h3>
         
         <div>
-          <button appClickLogger class="demo-btn primary">
-            Botón Principal - Haz clic aquí
+          <button appConsoleLog class="demo-btn primary">
+            Botón Principal - Da clic aquí
           </button>
           
-          <button appClickLogger class="demo-btn secondary">
-            Botón Secundario - Click para probar
+          <button appConsoleLog class="demo-btn secondary">
+            Botón Secundario - Clic para probar
           </button>
           
-          <button appClickLogger class="demo-btn success">
+          <button appConsoleLog class="demo-btn success">
             Botón de Éxito - Pruébame
           </button>
         </div>
@@ -32,8 +32,8 @@ import { ClickLoggerDirective } from '../directives/click-logger.directive';
         <h3>Elemento con directiva en texto:</h3>
         <p>
           Este es un texto normal, pero 
-          <span appClickLogger class="clickable-text">esta parte es clickeable</span>
-          y también registra clicks.
+          <span appConsoleLog class="clickable-text">esta parte es cliqueable</span>
+          y también registra clics.
         </p>
       </div>
     </div>
@@ -47,6 +47,7 @@ import { ClickLoggerDirective } from '../directives/click-logger.directive';
       font-weight: bold;
       transition: transform 0.1s ease;
     }
+    
     .demo-btn.primary {
       background-color: #007bff;
       color: white;

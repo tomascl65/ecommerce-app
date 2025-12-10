@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ClickLoggerDirective } from './click-logger.directive';
+import { ConsoleLogDirective } from './console-log.directive';
 
 @Component({
-  template: '<button appClickLogger>Click Me</button>'
+  template: '<button appConsoleLog>Click Me</button>'
 })
 class TestComponent {}
 
-describe('ClickLoggerDirective', () => {
+describe('ConsoleLogDirective', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let button: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ClickLoggerDirective],
+      imports: [ConsoleLogDirective],
       declarations: [TestComponent]
     });
     fixture = TestBed.createComponent(TestComponent);
@@ -23,13 +23,13 @@ describe('ClickLoggerDirective', () => {
   });
 
   it('should create an instance', () => {
-    const directive = new ClickLoggerDirective(button as any);
+    const directive = new ConsoleLogDirective(button as any);
     expect(directive).toBeTruthy();
   });
 
   it('should log to console when clicked', () => {
     spyOn(console, 'log');
-    const directive = new ClickLoggerDirective(button as any);
+    const directive = new ConsoleLogDirective(button as any);
     directive.onClick();
     expect(console.log).toHaveBeenCalledWith('Element clicked:', button);
   });
