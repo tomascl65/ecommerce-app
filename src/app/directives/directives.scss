@@ -1,0 +1,39 @@
+// Estilos SCSS para directivas
+
+// Variables para directivas
+$directive-primary: #28a745;
+$directive-secondary: #17a2b8;
+$directive-warning: #ffc107;
+
+// Mixins para directivas
+@mixin directive-demo-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid $directive-primary;
+  border-radius: 0.5rem;
+  background-color: #f8fff9;
+}
+
+@mixin directive-button($bg-color) {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  background-color: $bg-color;
+  color: white;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Ejemplo simple
+.simple-directive-btn {
+  @include directive-button($directive-secondary);
+  margin-bottom: 1rem;
+}

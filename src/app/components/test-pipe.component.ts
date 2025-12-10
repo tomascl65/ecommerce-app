@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShortDescriptionPipe } from './short-description-pipe';
+import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
 
 @Component({
   selector: 'app-test-pipe',
   standalone: true,
   imports: [CommonModule, ShortDescriptionPipe],
+  styleUrl: './components.scss',
   template: `
-    <div class="test-container">
+    <div>
       <h2>Prueba del Pipe shortDescription</h2>
       
       <div class="test-case">
@@ -29,35 +30,7 @@ import { ShortDescriptionPipe } from './short-description-pipe';
         <p><strong>Texto con pipe (15 chars):</strong> {{ exactText | shortDescription:15 }}</p>
       </div>
     </div>
-  `,
-  styles: [`
-    .test-container {
-      padding: 20px;
-      font-family: Arial, sans-serif;
-    }
-    .test-case {
-      margin: 20px 0;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-    }
-    h2 {
-      color: #333;
-      border-bottom: 2px solid #007bff;
-      padding-bottom: 10px;
-    }
-    h3 {
-      color: #555;
-      margin-top: 0;
-    }
-    p {
-      margin: 5px 0;
-    }
-    strong {
-      color: #007bff;
-    }
-  `]
+  `
 })
 export class TestPipeComponent {
   longText = 'Esta es una descripción larga que debe cortarse cuando exceda el límite establecido';

@@ -1,0 +1,62 @@
+// Estilos globales para la aplicación
+// Este archivo se importa automáticamente en app.ts
+
+// Variables SCSS globales
+$primary-color: #3b82f6;
+$secondary-color: #6b7280;
+$success-color: #10b981;
+$warning-color: #f59e0b;
+$danger-color: #ef4444;
+
+// Mixins SCSS
+@mixin button-styles($bg-color, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Clases utilitarias SCSS
+.btn-primary {
+  @include button-styles($primary-color);
+}
+
+.btn-secondary {
+  @include button-styles($secondary-color);
+}
+
+.btn-success {
+  @include button-styles($success-color);
+}
+
+.btn-danger {
+  @include button-styles($danger-color);
+}
+
+// Estilos para contenedores
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// Estilos para secciones
+.section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

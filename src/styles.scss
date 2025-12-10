@@ -1,5 +1,5 @@
-/* Importa el motor de Tailwind CSS v4 */
-@import "tailwindcss";
+/* Importa el motor de Tailwind CSS v4 usando la sintaxis moderna */
+@use "tailwindcss" as *;
 
 /* Opcional: Define tu tema personalizado aquí con @theme */
 @theme {
@@ -10,4 +10,13 @@
 /* Tus estilos personalizados van después */
 body {
   font-family: var(--font-family-sans);
+}
+
+/* Variables globales SCSS */
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #6b7280;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
 }
