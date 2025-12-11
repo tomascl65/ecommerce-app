@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CartDemoComponent } from './components/cart-demo.component';
+import { CartTestDemoComponent } from './components/cart-test-demo.component';
+import { HeaderComponent } from './components/header/header';
 import { ProductCardDemoComponent } from './components/product-card-demo.component';
 import { SimpleClickExampleComponent } from './components/simple-click-example.component';
 import { SimpleExampleComponent } from './components/simple-example.component';
@@ -20,6 +22,8 @@ import { Product } from './models/product.model';
     SimpleClickExampleComponent,
     CartDemoComponent,
     ProductCardDemoComponent,
+    HeaderComponent,
+    CartTestDemoComponent,
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],

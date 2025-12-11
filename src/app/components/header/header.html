@@ -1,0 +1,13 @@
+<header class="header-container">
+  <div class="header-content">
+    <h1 class="logo">Mi Tienda</h1>
+
+    <div class="cart-section">
+      <button class="cart-button" aria-label="Ver carrito">
+        <span class="cart-icon" aria-hidden="true">🛒</span>
+        <span class="cart-count" [textContent]="cartStore.totalItems()" aria-label="Cantidad de items en el carrito">
+        </span>
+      </button>
+    </div>
+  </div>
+</header>

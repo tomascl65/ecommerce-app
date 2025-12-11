@@ -1,0 +1,45 @@
+<!-- Demo simple para probar el carrito -->
+<div style="padding: 2rem; background: #f5f5f5; margin: 1rem; border-radius: 8px">
+  <h3>🛍️ Prueba del Header con Carrito</h3>
+  <p>Haz clic en los botones para agregar productos al carrito y observa cómo se actualiza el contador en el header:</p>
+
+  <div style="display: flex; gap: 1rem; margin: 1rem 0">
+    <button
+      onclick="addToCartTest(1)"
+      style="padding: 0.5rem 1rem; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer"
+    >
+      Agregar iPhone ($1099.99)
+    </button>
+
+    <button
+      onclick="addToCartTest(2)"
+      style="padding: 0.5rem 1rem; background: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer"
+    >
+      Agregar MacBook ($1199.99)
+    </button>
+
+    <button
+      onclick="addToCartTest(3)"
+      style="padding: 0.5rem 1rem; background: #ff9800; color: white; border: none; border-radius: 4px; cursor: pointer"
+    >
+      Agregar AirPods ($249.99)
+    </button>
+
+    <button
+      onclick="clearCartTest()"
+      style="padding: 0.5rem 1rem; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer"
+    >
+      Limpiar Carrito
+    </button>
+  </div>
+
+  <div id="cart-status" style="margin-top: 1rem; padding: 1rem; background: #e3f2fd; border-radius: 4px">
+    <strong>Estado del carrito:</strong> <span id="cart-items">0</span> items
+  </div>
+</div>
+
+<script>
+  // Esta función debe estar disponible globalmente para poder llamarla desde el HTML
+  // En Angular, esto se manejaría con event binding en el componente
+  console.log('Demo del carrito.');
+</script>
