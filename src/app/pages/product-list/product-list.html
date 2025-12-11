@@ -1,0 +1,86 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Lista de Productos</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Producto de ejemplo -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop"
+        alt="iPhone 13 Pro Max"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-4">
+        <h3 class="text-lg font-semibold mb-2">iPhone 13 Pro Max</h3>
+        <p class="text-gray-600 mb-2">El iPhone más avanzado con chip A15 Bionic</p>
+        <p class="text-xl font-bold text-blue-600 mb-4">$1,099.99</p>
+        <div class="flex gap-2">
+          <a
+            routerLink="/product/1"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          >
+            Ver Detalles
+          </a>
+          <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">
+            Agregar al Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto de ejemplo -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=400&fit=crop"
+        alt="MacBook Air M2"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-4">
+        <h3 class="text-lg font-semibold mb-2">MacBook Air M2</h3>
+        <p class="text-gray-600 mb-2">MacBook Air con el revolucionario chip M2</p>
+        <p class="text-xl font-bold text-blue-600 mb-4">$1,199.99</p>
+        <div class="flex gap-2">
+          <a
+            routerLink="/product/2"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          >
+            Ver Detalles
+          </a>
+          <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">
+            Agregar al Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto de ejemplo -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&h=400&fit=crop"
+        alt="AirPods Pro"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-4">
+        <h3 class="text-lg font-semibold mb-2">AirPods Pro</h3>
+        <p class="text-gray-600 mb-2">Auriculares inalámbricos con cancelación de ruido</p>
+        <p class="text-xl font-bold text-blue-600 mb-4">$249.99</p>
+        <div class="flex gap-2">
+          <a
+            routerLink="/product/3"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          >
+            Ver Detalles
+          </a>
+          <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">
+            Agregar al Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <a routerLink="/cart" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+      Ver Carrito
+    </a>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Carrito de Compras</h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Lista de productos en el carrito -->
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-lg shadow-md">
+        <!-- Producto en carrito -->
+        <div class="flex items-center p-6 border-b">
+          <img
+            src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=80&h=80&fit=crop"
+            alt="iPhone 13 Pro Max"
+            class="w-20 h-20 object-cover rounded-lg mr-4"
+          />
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold">iPhone 13 Pro Max</h3>
+            <p class="text-gray-600">$1,099.99</p>
+            <div class="flex items-center mt-2">
+              <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded hover:bg-gray-300">-</button>
+              <span class="mx-3">1</span>
+              <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded hover:bg-gray-300">+</button>
+              <button class="ml-4 text-red-600 hover:text-red-800">Eliminar</button>
+            </div>
+          </div>
+          <div class="text-lg font-bold">$1,099.99</div>
+        </div>
+
+        <!-- Otro producto en carrito -->
+        <div class="flex items-center p-6 border-b">
+          <img
+            src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=80&h=80&fit=crop"
+            alt="AirPods Pro"
+            class="w-20 h-20 object-cover rounded-lg mr-4"
+          />
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold">AirPods Pro</h3>
+            <p class="text-gray-600">$249.99</p>
+            <div class="flex items-center mt-2">
+              <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded hover:bg-gray-300">-</button>
+              <span class="mx-3">2</span>
+              <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded hover:bg-gray-300">+</button>
+              <button class="ml-4 text-red-600 hover:text-red-800">Eliminar</button>
+            </div>
+          </div>
+          <div class="text-lg font-bold">$499.98</div>
+        </div>
+
+        <!-- Carrito vacío -->
+        <div class="text-center p-8 text-gray-500" *ngIf="false">
+          <p>Tu carrito está vacío</p>
+          <a routerLink="/products" class="text-blue-600 hover:underline mt-2 inline-block"> Continuar comprando </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen del pedido -->
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Resumen del Pedido</h2>
+
+        <div class="space-y-3 mb-4">
+          <div class="flex justify-between">
+            <span>Subtotal:</span>
+            <span>$1,599.97</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Envío:</span>
+            <span class="text-green-600">Gratis</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Impuestos:</span>
+            <span>$143.10</span>
+          </div>
+          <hr />
+          <div class="flex justify-between text-lg font-bold">
+            <span>Total:</span>
+            <span>$1,743.07</span>
+          </div>
+        </div>
+
+        <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors mb-4">
+          Proceder al Pago
+        </button>
+
+        <a routerLink="/products" class="block text-center text-blue-600 hover:underline"> Continuar comprando </a>
+
+        <!-- Métodos de pago -->
+        <div class="mt-6 pt-6 border-t">
+          <h3 class="text-sm font-semibold mb-3">Métodos de pago aceptados:</h3>
+          <div class="flex space-x-2">
+            <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">VISA</div>
+            <div class="bg-red-600 text-white px-3 py-1 rounded text-sm">MC</div>
+            <div class="bg-blue-500 text-white px-3 py-1 rounded text-sm">PayPal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información de envío -->
+      <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+        <h3 class="text-lg font-semibold mb-3">Información de Envío</h3>
+        <div class="text-sm text-gray-600">
+          <p class="mb-2">📦 <strong>Envío gratuito</strong> en pedidos superiores a $100</p>
+          <p class="mb-2">🚚 <strong>Entrega estimada:</strong> 2-3 días hábiles</p>
+          <p>🔄 <strong>Devolución gratuita</strong> dentro de 30 días</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos recomendados -->
+  <div class="mt-12">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">También te puede interesar</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=300&h=300&fit=crop"
+          alt="MacBook Air M2"
+          class="w-full h-32 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="font-semibold text-sm">MacBook Air M2</h3>
+          <p class="text-blue-600 font-bold text-sm">$1,199.99</p>
+          <a routerLink="/product/2" class="text-blue-600 hover:underline text-sm">Ver detalles</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=300&h=300&fit=crop"
+          alt="Apple Watch"
+          class="w-full h-32 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="font-semibold text-sm">Apple Watch Series 8</h3>
+          <p class="text-blue-600 font-bold text-sm">$399.99</p>
+          <a routerLink="/product/4" class="text-blue-600 hover:underline text-sm">Ver detalles</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=300&h=300&fit=crop"
+          alt="iPad Pro"
+          class="w-full h-32 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="font-semibold text-sm">iPad Pro 11"</h3>
+          <p class="text-blue-600 font-bold text-sm">$799.99</p>
+          <a routerLink="/product/5" class="text-blue-600 hover:underline text-sm">Ver detalles</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=300&h=300&fit=crop"
+          alt="Mac Studio"
+          class="w-full h-32 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="font-semibold text-sm">Mac Studio</h3>
+          <p class="text-blue-600 font-bold text-sm">$1,999.99</p>
+          <a routerLink="/product/6" class="text-blue-600 hover:underline text-sm">Ver detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
