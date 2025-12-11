@@ -4,7 +4,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { httpConfigInterceptor } from './http-config-interceptor';
 
 describe('httpConfigInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
+  const interceptor: HttpInterceptorFn = (req, next) =>
     TestBed.runInInjectionContext(() => httpConfigInterceptor(req, next));
 
   beforeEach(() => {

@@ -29,7 +29,7 @@ import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
           <div *ngFor="let product of sampleProducts">
             <h4>{{ product.title }}</h4>
             <p>{{ product.price | currency }}</p>
-            <p>{{ product.description | shortDescription : 40 }}</p>
+            <p>{{ product.description | shortDescription: 40 }}</p>
 
             <div>
               <input
@@ -79,7 +79,7 @@ import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
       </div>
 
       <div *ngIf="cartStore.totalItems() === 0">
-        <p>El carrito está vacío. ¡Agrega algunos productos!</p>
+        <p>El carrito está vacío.</p>
       </div>
     </div>
   `,
@@ -137,28 +137,27 @@ export class CartDemoComponent {
       id: 1,
       title: 'iPhone 13 Pro',
       price: 999.99,
-      description:
-        'El iPhone 13 Pro con chip A15 Bionic, cámara profesional y pantalla Super Retina XDR',
+      description: 'El iPhone 13 Pro con chip A15 Bionic y pantalla Super Retina XDR',
       category: 'smartphones',
-      image: 'https://via.placeholder.com/300x200?text=iPhone+13+Pro',
+      image: '',
       rating: { rate: 4.8, count: 150 },
     },
     {
       id: 2,
       title: 'MacBook Air M2',
       price: 1199.99,
-      description: 'MacBook Air con chip M2, 8GB de RAM y 256GB SSD para máximo rendimiento',
+      description: 'MacBook Air con chip M2, 8GB de RAM y 256GB SSD',
       category: 'laptops',
-      image: 'https://via.placeholder.com/300x200?text=MacBook+Air+M2',
+      image: '',
       rating: { rate: 4.9, count: 89 },
     },
     {
       id: 3,
       title: 'AirPods Pro',
       price: 249.99,
-      description: 'Auriculares inalámbricos con cancelación activa de ruido y audio espacial',
+      description: 'Auriculares inalámbricos con cancelación de ruido y audio espacial',
       category: 'audio',
-      image: 'https://via.placeholder.com/300x200?text=AirPods+Pro',
+      image: '',
       rating: { rate: 4.7, count: 234 },
     },
   ];
@@ -171,13 +170,11 @@ export class CartDemoComponent {
     effect(() => {
       const totalItems = this.cartStore.totalItems();
       const totalPrice = this.cartStore.totalPrice();
-      console.log(
-        `[CartDemo] Carrito actualizado - Items: ${totalItems}, Total: $${totalPrice.toFixed(2)}`
-      );
+      console.log(`Carrito actualizado - Items: ${totalItems}, Total: $${totalPrice.toFixed(2)}`);
     });
 
     // Inicializar cantidades
-    this.sampleProducts.forEach((product) => {
+    this.sampleProducts.forEach(product => {
       this.quantities[product.id] = 1;
     });
   }

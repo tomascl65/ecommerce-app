@@ -1,0 +1,93 @@
+# Dependencies
+node_modules/
+bower_components/
+
+# Build outputs
+dist/
+build/
+.tmp/
+coverage/
+
+# Angular specific
+.angular/
+*.tgz
+*.tar.gz
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled output
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional prettier cache
+.prettiercache
+
+# Package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build tools
+webpack.config.js
+webpack.config.prod.js
+rollup.config.js
+vite.config.ts
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+
+# Assets that shouldn't be formatted
+*.svg
+*.ico
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Binary files
+*.exe
+*.dll
+*.so
+*.dylib

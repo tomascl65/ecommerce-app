@@ -2,12 +2,12 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appConsoleLog]',
-  standalone: true
+  standalone: true,
 })
 export class ConsoleLogDirective {
-  constructor(private elementRef: ElementRef) {}
+  constructor(private _elementRef: ElementRef) {}
 
   @HostListener('click') onClick() {
-    console.log('Element clicked:', this.elementRef.nativeElement);
+    console.log('Element clicked:', this._elementRef.nativeElement);
   }
 }

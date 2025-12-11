@@ -3,22 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsoleLogDirective } from './console-log.directive';
 
 @Component({
-  template: '<button appConsoleLog>Click Me</button>'
+  template: '<button appConsoleLog>Click Me</button>',
 })
 class TestComponent {}
 
 describe('ConsoleLogDirective', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let button: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ConsoleLogDirective],
-      declarations: [TestComponent]
+      declarations: [TestComponent],
     });
     fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
     button = fixture.nativeElement.querySelector('button');
   });
 

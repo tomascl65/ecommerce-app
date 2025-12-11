@@ -9,8 +9,8 @@ export const httpConfigInterceptor: HttpInterceptorFn = (req, next) => {
   // Clonar la request para agregar headers
   const authReq = req.clone({
     setHeaders: {
-      'Custom-Header': 'MyCustomHeaderValue'
-    }
+      'Custom-Header': 'MyCustomHeaderValue',
+    },
   });
 
   return next(authReq).pipe(

@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Notification {
-  
   showError(message: string): void {
     // Mostrar notificación al usuario
     console.error('Error:', message);
