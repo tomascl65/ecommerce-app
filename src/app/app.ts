@@ -4,6 +4,7 @@ import { TestPipeComponent } from './components/test-pipe.component';
 import { SimpleExampleComponent } from './components/simple-example.component';
 import { TestClickDirectiveComponent } from './components/test-click-directive.component';
 import { SimpleClickExampleComponent } from './components/simple-click-example.component';
+import { CartDemoComponent } from './components/cart-demo.component';
 import { ProductService } from './services/product.service';
 import { Product, ProductWithDetails } from './models/product.model';
 
@@ -15,14 +16,15 @@ import { Product, ProductWithDetails } from './models/product.model';
     SimpleExampleComponent,
     TestClickDirectiveComponent,
     SimpleClickExampleComponent,
+    CartDemoComponent,
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
 })
 export class App implements OnInit {
   protected readonly title = signal('ecommerce-app');
-  
-  constructor(private productService: ProductService) { }
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     // Usar el nuevo método con llamadas anidadas
@@ -33,7 +35,7 @@ export class App implements OnInit {
       },
       error: (error) => {
         console.error('Error al obtener productos con detalles:', error);
-      }
+      },
     });
   }
 }
