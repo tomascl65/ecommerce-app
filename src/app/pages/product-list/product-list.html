@@ -1,6 +1,32 @@
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">Lista de Productos</h1>
 
+  <!-- Formulario de búsqueda -->
+  <div class="mb-8">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+      <div class="search-input-container">
+        <input
+          type="text"
+          formControlName="searchTerm"
+          placeholder="Buscar productos..."
+          class="search-input"
+          [class.error]="searchTermControl.invalid && searchTermControl.touched"
+        />
+        <button type="submit" class="search-button" [disabled]="searchForm.invalid">Buscar</button>
+      </div>
+
+      <!-- Mensajes de error -->
+      <div class="error-messages" *ngIf="searchTermControl.invalid && searchTermControl.touched">
+        <small class="error-message" *ngIf="searchTermControl.errors?.['required']">
+          El campo de búsqueda es requerido.
+        </small>
+        <small class="error-message" *ngIf="searchTermControl.errors?.['minlength']">
+          Se requieren al menos 3 caracteres.
+        </small>
+      </div>
+    </form>
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- Producto de ejemplo -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
