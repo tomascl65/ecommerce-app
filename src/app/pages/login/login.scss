@@ -1,0 +1,277 @@
+// Variables de diseño
+$primary-color: #3b82f6;
+$primary-hover: #2563eb;
+$error-color: #ef4444;
+$error-light: #fef2f2;
+$success-color: #10b981;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+$border-radius: 8px;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl:
+  0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $gray-50 0%, $gray-100 100%);
+  padding: 1rem;
+}
+
+.login-card {
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-lg;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: $shadow-xl;
+  }
+}
+
+.login-title {
+  color: $gray-900;
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  color: $gray-700;
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid $gray-200;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $gray-900;
+  background-color: white;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &::placeholder {
+    color: $gray-400;
+  }
+
+  &:hover:not(:focus) {
+    border-color: $gray-300;
+  }
+
+  &:disabled {
+    background-color: $gray-50;
+    color: $gray-500;
+    cursor: not-allowed;
+  }
+}
+
+.form-input--error {
+  border-color: $error-color;
+  background-color: $error-light;
+
+  &:focus {
+    border-color: $error-color;
+    box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+  }
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &::before {
+    content: '⚠';
+    font-size: 0.75rem;
+  }
+}
+
+.submit-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+
+  &:disabled {
+    background-color: $gray-300;
+    color: $gray-500;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.submit-button--loading {
+  pointer-events: none;
+}
+
+.loading-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-info {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $gray-200;
+}
+
+.info-text {
+  color: $gray-600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+
+  strong {
+    color: $gray-800;
+    font-weight: 600;
+  }
+}
+
+// Estados de validación en tiempo real
+.form-input.ng-touched.ng-invalid {
+  border-color: $error-color;
+  background-color: $error-light;
+}
+
+.form-input.ng-touched.ng-valid {
+  border-color: $success-color;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($success-color, 0.1);
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .login-container {
+    padding: 0.5rem;
+  }
+
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+}
+
+// Animaciones de entrada
+.login-card {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  .login-card,
+  .form-input,
+  .submit-button {
+    animation: none;
+    transition: none;
+  }
+
+  .loading-spinner {
+    animation: none;
+  }
+}

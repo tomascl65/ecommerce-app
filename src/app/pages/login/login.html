@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-title">Iniciar Sesión</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" novalidate>
+      <!-- Campo Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-input"
+          [class.form-input--error]="email?.invalid && email?.touched"
+          placeholder="Ingresa tu email"
+          autocomplete="email"
+        />
+        <div *ngIf="email?.invalid && email?.touched" class="error-message" role="alert" aria-live="polite">
+          {{ getEmailErrorMessage() }}
+        </div>
+      </div>
+
+      <!-- Campo Password -->
+      <div class="form-group">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-input"
+          [class.form-input--error]="password?.invalid && password?.touched"
+          placeholder="Ingresa tu contraseña"
+          autocomplete="current-password"
+        />
+        <div *ngIf="password?.invalid && password?.touched" class="error-message" role="alert" aria-live="polite">
+          {{ getPasswordErrorMessage() }}
+        </div>
+      </div>
+
+      <!-- Botón Submit -->
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="isSubmitting || loginForm.invalid"
+        [class.submit-button--loading]="isSubmitting"
+      >
+        <span *ngIf="!isSubmitting">Iniciar Sesión</span>
+        <span *ngIf="isSubmitting" class="loading-text">
+          <span class="loading-spinner"></span>
+          Iniciando sesión...
+        </span>
+      </button>
+    </form>
+
+    <!-- Información adicional -->
+    <div class="login-info">
+      <p class="info-text">
+        <strong>Datos de prueba:</strong><br />
+        Email: cualquier email válido<br />
+        Contraseña: mínimo 6 caracteres
+      </p>
+    </div>
+  </div>
+</div>
