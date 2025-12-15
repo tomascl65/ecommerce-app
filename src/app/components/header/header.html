@@ -1,13 +1,54 @@
-<header class="header-container">
-  <div class="header-content">
-    <h1 class="logo">Mi Tienda</h1>
+<header class="bg-white shadow-md fixed w-full top-0 z-50">
+  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a routerLink="/" class="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors"> E-Commerce </a>
 
-    <div class="cart-section">
-      <button class="cart-button" aria-label="Ver carrito">
-        <span class="cart-icon" aria-hidden="true">🛒</span>
-        <span class="cart-count" [textContent]="cartStore.totalItems()" aria-label="Cantidad de items en el carrito">
-        </span>
+    <!-- Navigation -->
+    <nav class="hidden md:flex space-x-8">
+      <a
+        routerLink="/"
+        routerLinkActive="text-blue-600 font-semibold"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+        >Inicio</a
+      >
+      <a
+        routerLink="/products"
+        routerLinkActive="text-blue-600 font-semibold"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+        >Productos</a
+      >
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="flex items-center space-x-4">
+      <!-- Login Button -->
+      <button (click)="toggleAuth()" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+        {{ (authService.isAuthenticated$ | async) ? 'Autenticado' : 'Login' }}
       </button>
+
+      <!-- Cart Icon -->
+      <a
+        routerLink="/cart"
+        class="relative text-gray-600 hover:text-blue-600 transition-colors"
+        aria-label="Ver carrito"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+        @if (cartStore.count() > 0) {
+          <span
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center animate-bounce"
+          >
+            {{ cartStore.count() }}
+          </span>
+        }
+      </a>
     </div>
   </div>
 </header>

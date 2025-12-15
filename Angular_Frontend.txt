@@ -1,0 +1,55 @@
+﻿E-commerce App
+
+Descripción:
+
+El objetivo es construir una aplicación de e-commerce utilizando Angular 20 LTS. La aplicación debe consumir una API externa, manejar estados de forma eficiente y ofrecer una experiencia de usuario fluida y responsiva. Se requiere el uso de las nuevas características de Angular, la implementación de soluciones complejas como manejo de estado global, interceptores, servicios, validaciones en formularios, y optimización del rendimiento.
+
+Requerimientos:
+
+1. Angular 20 LTS con Standalone Components
+   Todos los componentes deben ser standalone, sin NgModule, usando el nuevo enfoque de Angular 20.
+2. Nuevas funcionalidades de Angular 20
+   Implementar signals para manejar el estado reactivo tanto dentro como fuera del ciclo de vida de los componentes, y aplicar las mejoras en la sintaxis de las vistas.
+3. Creación de un Pipe personalizado: shortDescription
+   Desarrolla un pipe que reciba una descripción de producto y un número para acortarla. Por defecto, el tamaño máximo será de 15 caracteres. Ejemplo: {{ product.description | shortDescription:20 }}.
+4. Creación de una Directiva personalizada
+   Implementa una directiva que al hacer clic en un elemento muestre un mensaje en la consola o realice alguna acción definida.
+5. Interceptores
+   Implementa un interceptor para agregar un header personalizado en cada petición HTTP y manejar los errores de forma centralizada. Los errores deben ser mostrados al usuario de manera amigable mediante un componente dedicado a mostrar notificaciones.
+6. Servicios y Múltiples Llamadas HTTP usando RxJS
+   Utiliza servicios para realizar las peticiones HTTP a la API Fake Store API (https://fakestoreapi.com), organizando las llamadas dentro de un servicio dedicado.
+   - Se requiere realizar múltiples llamadas anidadas utilizando operadores de RxJS como mergeMap, concatMap o switchMap. Por ejemplo, obtener todos los productos y luego realizar llamadas adicionales para cada producto para obtener más detalles o categorías relacionadas.
+7. Manejo de Estado Global con NGRX Signals
+   Implementa un manejo de estado global utilizando NGRX Signals para gestionar el carrito de compras y el catálogo de productos. Asegúrate de que las actualizaciones en el carrito se reflejen en todos los componentes que dependan de este estado, sin usar @Input() y @Output().
+8. Maquetación con Tailwind CSS y SCSS
+   Utiliza Tailwind CSS con un enfoque mobile-first para la maquetación de la aplicación. Implementa una vista de catálogo de productos responsiva y limpia, que incluya imágenes, descripciones, precios y botones de acción. Personaliza algunos estilos usando SCSS.
+9. Rutas con Lazy Load y Guards (canActivate, canDeactivate)
+   - Carga diferida (Lazy Load) para algunas rutas, como el detalle de producto.
+   - Protege rutas sensibles, como la gestión del carrito o el proceso de pago, utilizando canActivate o canDeactivate.
+10. Formularios Reactivos con Validaciones
+   - Implementa un formulario de búsqueda de productos con validaciones reactivas (ej. campo obligatorio, mínimo de caracteres).
+   - También debe existir un formulario de autenticación (simulada) con validaciones para los campos de email y contraseña, mostrando mensajes de error cuando las validaciones no se cumplen.
+11. Comunicación entre Componentes Alejados usando Estado Global
+   Implementa una estructura donde los componentes alejados en el árbol de componentes puedan comunicarse a través del estado global manejado por NGRX Signals. Por ejemplo, los cambios en el carrito de compras deben actualizarse automáticamente en un icono de carrito que se encuentra en un componente header sin necesidad de pasar datos por @Input() o @Output().
+
+Bonus:
+1. Testing
+   - Pruebas unitarias para los servicios, pipes, directivas y componentes.
+   - Pruebas de integración para asegurar que el manejo del estado y las llamadas HTTP funcionan correctamente.
+2. Optimización de Performance
+   - Usa estrategias de OnPush en los componentes donde sea necesario.
+   - Implementa lazy loading para los módulos que no son críticos en la carga inicial.
+3. Logging y Reporte de Errores
+   - Implementa un sistema de logging que capture los errores de la aplicación y los envíe a un servicio remoto (simulado).
+4. Deploy
+   Despliega la aplicación en Netlify, Vercel o GitHub Pages, proporcionando un enlace funcional.
+
+Criterios de Evaluación:
+1. Uso correcto de Angular 20 y sus nuevas características.
+2. Capacidad de manejar múltiples llamadas HTTP con RxJS y Signals.
+3. Diseño de una interfaz responsive y moderna con Tailwind CSS y SCSS.
+4. Uso de NGRX Signals para el manejo de estado global.
+5. Habilidad para crear y usar Pipes, Directivas, Interceptores y Servicios.
+6. Implementación de rutas con guards y lazy loading.
+7. Formularios con validaciones reactivas.
+8. Optimización de rendimiento y buenas prácticas de testing.

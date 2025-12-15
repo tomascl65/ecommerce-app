@@ -1,9 +1,9 @@
-import { Component, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { cartStore } from '../state/cart.store';
 import { Product } from '../models/product.model';
 import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
+import { CartStore } from '../state/cart.store';
 
 @Component({
   selector: 'app-cart-demo',
@@ -17,8 +17,8 @@ import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
       <div>
         <div>
           <h3>Estado del Carrito</h3>
-          <p><strong>Total de Items:</strong> {{ cartStore.totalItems() }}</p>
-          <p><strong>Precio Total:</strong> {{ cartStore.totalPrice() | currency }}</p>
+          <p><strong>Total de Items:</strong> {{ cartStore.count() }}</p>
+          <p><strong>Precio Total:</strong> {{ cartStore.total() | currency }}</p>
         </div>
       </div>
 
@@ -46,10 +46,10 @@ import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
       </div>
 
       <!-- Items del carrito -->
-      <div *ngIf="cartStore.totalItems() > 0">
+      <div *ngIf="cartStore.count() > 0">
         <h3>Items en el Carrito:</h3>
         <div class="products-grid">
-          <div *ngFor="let item of cartStore.cartItems()">
+          <div *ngFor="let item of cartStore.items()">
             <div>
               <h4>{{ item.product.title }}</h4>
               <p>Precio unitario: {{ item.product.price | currency }}</p>
@@ -78,7 +78,7 @@ import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
         </div>
       </div>
 
-      <div *ngIf="cartStore.totalItems() === 0">
+      <div *ngIf="cartStore.count() === 0">
         <p>El carrito está vacío.</p>
       </div>
     </div>
@@ -129,7 +129,7 @@ import { ShortDescriptionPipe } from '../pipes/short-description-pipe';
   ],
 })
 export class CartDemoComponent {
-  cartStore = cartStore;
+  cartStore = inject(CartStore);
 
   // Productos
   sampleProducts: Product[] = [
@@ -168,8 +168,8 @@ export class CartDemoComponent {
   constructor() {
     // Efecto para observar cambios en el carrito
     effect(() => {
-      const totalItems = this.cartStore.totalItems();
-      const totalPrice = this.cartStore.totalPrice();
+      const totalItems = this.cartStore.count();
+      const totalPrice = this.cartStore.total();
       console.log(`Carrito actualizado - Items: ${totalItems}, Total: $${totalPrice.toFixed(2)}`);
     });
 
@@ -181,7 +181,10 @@ export class CartDemoComponent {
 
   addToCart(product: Product): void {
     const quantity = this.quantities[product.id] || 1;
-    this.cartStore.addToCart(product, quantity);
+    // Add the product the specified number of times
+    for (let i = 0; i < quantity; i++) {
+      this.cartStore.addToCart(product);
+    }
     console.log(`Agregado al carrito: ${product.title} (cantidad: ${quantity})`);
   }
 

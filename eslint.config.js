@@ -25,6 +25,9 @@ export default [
         ErrorEvent: 'readonly',
         window: 'readonly',
         document: 'readonly',
+        setTimeout: 'readonly',
+        localStorage: 'readonly',
+        StorageEvent: 'readonly',
         // Testing globals (Jasmine)
         describe: 'readonly',
         beforeEach: 'readonly',
@@ -112,6 +115,22 @@ export default [
     files: ['src/main.ts', 'src/polyfills.ts'],
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
+    },
+  },
+
+  // Configuration files (CommonJS)
+  {
+    files: ['*.config.js', '*.config.mjs'],
+    languageOptions: {
+      globals: {
+        module: 'readonly',
+        require: 'readonly',
+        __dirname: 'readonly',
+        process: 'readonly',
+      },
+    },
+    rules: {
+      'no-undef': 'off', // Allow CommonJS globals
     },
   },
 ];

@@ -12,11 +12,11 @@
     <h2 class="text-xl font-semibold text-indigo-900 mb-4">Estado del Carrito</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="text-center">
-        <p class="text-2xl font-bold text-indigo-600">{{ cartStore.totalItems() }}</p>
+        <p class="text-2xl font-bold text-indigo-600">{{ cartStore.count() }}</p>
         <p class="text-sm text-gray-600">Total de Items</p>
       </div>
       <div class="text-center">
-        <p class="text-2xl font-bold text-indigo-600">${{ cartStore.totalPrice() | number: '1.2-2' }}</p>
+        <p class="text-2xl font-bold text-indigo-600">${{ cartStore.total() | number: '1.2-2' }}</p>
         <p class="text-sm text-gray-600">Precio Total</p>
       </div>
     </div>
@@ -28,10 +28,10 @@
   </div>
 
   <!-- Items del carrito -->
-  <div *ngIf="cartStore.totalItems() > 0" class="mt-12">
+  <div *ngIf="cartStore.count() > 0" class="mt-12">
     <h2 class="text-2xl font-semibold text-gray-900 mb-6">Items en el Carrito</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div *ngFor="let item of cartStore.cartItems()" class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+      <div *ngFor="let item of cartStore.items()" class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
         <h4 class="font-medium text-gray-900 truncate">{{ item.product.title }}</h4>
         <p class="text-sm text-gray-600">Cantidad: {{ item.quantity }}</p>
         <p class="text-sm font-semibold text-indigo-600">
@@ -57,7 +57,7 @@
   </div>
 
   <!-- Mensaje cuando el carrito está vacío -->
-  <div *ngIf="cartStore.totalItems() === 0" class="text-center mt-12 py-12">
+  <div *ngIf="cartStore.count() === 0" class="text-center mt-12 py-12">
     <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         stroke-linecap="round"

@@ -1,8 +1,9 @@
-/* Importa el motor de Tailwind CSS v4 usando la sintaxis moderna */
-@use 'tailwindcss' as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Opcional: Define tu tema personalizado aquí con @theme */
-@theme {
+/* Opcional: Define tu tema personalizado aquí */
+:root {
   --color-primary: #3b82f6; /* Ejemplo: define un color personalizado */
   --font-family-sans: ui-sans-serif, system-ui, sans-serif;
 }
@@ -12,7 +13,7 @@ body {
   font-family: var(--font-family-sans);
 }
 
-/* Variables globales SCSS */
+/* Variables globales CSS */
 :root {
   --primary-color: #3b82f6;
   --secondary-color: #6b7280;

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Product } from '../models/product.model';
-import { cartStore } from '../state/cart.store';
+import { CartStore } from '../state/cart.store';
 
 @Component({
   selector: 'app-cart-test-demo',
@@ -32,9 +32,9 @@ import { cartStore } from '../state/cart.store';
       </div>
 
       <div>
-        <strong>Estado del carrito:</strong> {{ cartStore.totalItems() }} items
+        <strong>Estado del carrito:</strong> {{ cartStore.count() }} items
         <br />
-        <strong>Total:</strong> \${{ cartStore.totalPrice() | number: '1.2-2' }}
+        <strong>Total:</strong> \${{ cartStore.total() | number: '1.2-2' }}
       </div>
     </div>
   `,
@@ -77,7 +77,7 @@ import { cartStore } from '../state/cart.store';
   ],
 })
 export class CartTestDemoComponent {
-  protected readonly cartStore = cartStore;
+  protected readonly cartStore = inject(CartStore);
 
   // Productos de ejemplo
   iphone: Product = {
@@ -111,7 +111,7 @@ export class CartTestDemoComponent {
   };
 
   addToCart(product: Product): void {
-    this.cartStore.addToCart(product, 1);
+    this.cartStore.addToCart(product);
     console.log(`Agregado al carrito: ${product.title}`);
   }
 

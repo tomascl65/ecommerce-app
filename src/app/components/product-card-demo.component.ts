@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../models/product.model';
-import { cartStore } from '../state/cart.store';
+import { CartStore } from '../state/cart.store';
 import { ProductCardComponent } from './product-card/product-card';
 
 @Component({
@@ -13,7 +13,7 @@ import { ProductCardComponent } from './product-card/product-card';
   styleUrl: './product-card-demo.scss',
 })
 export class ProductCardDemoComponent {
-  cartStore = cartStore;
+  cartStore = inject(CartStore);
 
   // Productos de muestra
   sampleProducts: Product[] = [
@@ -82,8 +82,8 @@ export class ProductCardDemoComponent {
   constructor() {
     // Efecto para observar cambios en el carrito
     effect(() => {
-      const totalItems = this.cartStore.totalItems();
-      const totalPrice = this.cartStore.totalPrice();
+      const totalItems = this.cartStore.count();
+      const totalPrice = this.cartStore.total();
       console.log(`Carrito actualizado - Items: ${totalItems}, Total: $${totalPrice.toFixed(2)}`);
     });
   }
