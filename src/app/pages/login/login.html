@@ -2,6 +2,11 @@
   <div class="login-card">
     <h2 class="login-title">Iniciar Sesión</h2>
 
+    <!-- Estado de autenticación -->
+    <div class="auth-status" appConsoleLog="Login page accessed">
+      <p><strong>Estado:</strong> {{ authService.isAuthenticated() ? 'Autenticado' : 'No autenticado' }}</p>
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" novalidate>
       <!-- Email -->
       <div class="form-group">
@@ -37,19 +42,34 @@
         </div>
       </div>
 
-      <!-- Submit -->
-      <button
-        type="submit"
-        class="submit-button"
-        [disabled]="isSubmitting || loginForm.invalid"
-        [class.submit-button--loading]="isSubmitting"
-      >
-        <span *ngIf="!isSubmitting">Iniciar Sesión</span>
-        <span *ngIf="isSubmitting" class="loading-text">
-          <span class="loading-spinner"></span>
-          Iniciando sesión...
-        </span>
-      </button>
+      <!-- Botones -->
+      <div class="button-group">
+        <!-- Botón de Login -->
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="isSubmitting || loginForm.invalid"
+          [class.submit-button--loading]="isSubmitting"
+          appConsoleLog="Login button clicked"
+        >
+          <span *ngIf="!isSubmitting">Iniciar Sesión</span>
+          <span *ngIf="isSubmitting" class="loading-text">
+            <span class="loading-spinner"></span>
+            Iniciando sesión...
+          </span>
+        </button>
+
+        <!-- Botón de Logout (solo visible si está autenticado) -->
+        <button
+          *ngIf="authService.isAuthenticated()"
+          type="button"
+          class="logout-button"
+          (click)="onLogout()"
+          appConsoleLog="Logout button clicked"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
     </form>
 
     <!-- Información adicional -->
@@ -58,6 +78,10 @@
         <strong>Datos de prueba:</strong><br />
         Email: cualquier email válido<br />
         Contraseña: mínimo 6 caracteres
+      </p>
+      <p class="info-text">
+        <strong>Logging:</strong><br />
+        Los eventos de login/logout se registran en la consola del navegador
       </p>
     </div>
   </div>

@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+// Interface para tipado específico de datos de logging de autenticación
+interface AuthLogData {
+  hasToken?: boolean;
+  token?: string;
+  timestamp: string;
+  [key: string]: string | boolean | number | object | null | undefined;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,13 +18,22 @@ export class AuthService {
 
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.logAuthEvent('AuthService initialized', {
+      hasToken: this.hasToken(),
+      timestamp: new Date().toISOString(),
+    });
+  }
 
-  // Establece token
+  // Establece token (login)
   setToken(token: string): void {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(this.TOKEN_KEY, token);
       this.updateAuthStatus();
+      this.logAuthEvent('User login successful', {
+        token: `${token.substring(0, 10)}...`,
+        timestamp: new Date().toISOString(),
+      });
     }
   }
 
@@ -36,8 +53,15 @@ export class AuthService {
   // Elimina token (logout)
   logout(): void {
     if (typeof window !== 'undefined') {
+      const hadToken = this.hasToken();
       window.localStorage.removeItem(this.TOKEN_KEY);
       this.updateAuthStatus();
+
+      if (hadToken) {
+        this.logAuthEvent('User logout successful', {
+          timestamp: new Date().toISOString(),
+        });
+      }
     }
   }
 
@@ -49,5 +73,13 @@ export class AuthService {
   // Actualiza estado de autenticación
   private updateAuthStatus(): void {
     this.isAuthenticatedSubject.next(this.hasToken());
+  }
+
+  // Método para logging de eventos de autenticación
+  private logAuthEvent(event: string, data?: AuthLogData): void {
+    console.log(`[AUTH] ${event}`, {
+      ...data,
+      service: 'AuthService',
+    });
   }
 }

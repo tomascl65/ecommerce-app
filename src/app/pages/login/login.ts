@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ConsoleLogDirective } from '../../directives/console-log.directive';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ConsoleLogDirective],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -17,7 +18,7 @@ export class Login {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -33,8 +34,14 @@ export class Login {
       // Simular login exitoso
       const { email } = this.loginForm.value;
 
-      // Guardar token
+      // Guardar token (esto trigger el logging en AuthService)
       this.authService.setToken('simulated_token_123');
+
+      // Log adicional con la directiva
+      console.log('[LOGIN] Login form submitted', {
+        email,
+        timestamp: new Date().toISOString(),
+      });
 
       // Redirigir
       window.setTimeout(() => {
@@ -45,6 +52,20 @@ export class Login {
       // Marcar los campos como tocados para mostrar errores
       this.markFormGroupTouched();
     }
+  }
+
+  // Método para logout
+  onLogout(): void {
+    // Log del logout con la directiva
+    console.log('[LOGIN] Logout requested', {
+      timestamp: new Date().toISOString(),
+    });
+
+    // Llamar al servicio de auth (esto trigger el logging en AuthService)
+    this.authService.logout();
+
+    // Redirigir al login
+    this.router.navigate(['/login']);
   }
 
   private markFormGroupTouched(): void {

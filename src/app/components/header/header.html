@@ -19,7 +19,11 @@
     </nav>
 
     <div class="flex items-center space-x-4">
-      <button (click)="toggleAuth()" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+      <button
+        (click)="toggleAuth()"
+        class="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+        appConsoleLog="Auth button clicked in header"
+      >
         {{ (authService.isAuthenticated$ | async) ? 'Autenticado' : 'Login' }}
       </button>
 
