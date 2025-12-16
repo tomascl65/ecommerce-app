@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
+import { cartCanDeactivateGuard } from './guards/cart-can-deactivate.guard';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,8 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadComponent: () => import('./pages/cart/cart').then(m => m.Cart),
+    canActivate: [authGuard],
+    canDeactivate: [cartCanDeactivateGuard],
   },
   {
     path: 'checkout',
