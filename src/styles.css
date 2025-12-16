@@ -4,7 +4,7 @@
 
 /* Opcional: Define tu tema personalizado aquí */
 :root {
-  --color-primary: #3b82f6; /* Ejemplo: define un color personalizado */
+  --color-primary: #3b82f6;
   --font-family-sans: ui-sans-serif, system-ui, sans-serif;
 }
 

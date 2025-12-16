@@ -12,7 +12,7 @@ import { CartStore } from '../../state/cart.store';
 export class Cart {
   cartStore = inject(CartStore);
 
-  // 10% tax example
+  // 10% tax
   tax = computed(() => this.cartStore.total() * 0.1);
   grandTotal = computed(() => this.cartStore.total() + this.tax());
 

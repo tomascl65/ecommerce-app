@@ -1,11 +1,7 @@
-// Estilos SCSS para componentes
-
-// Variables para componentes
 $component-border-radius: 0.5rem;
 $component-padding: 1rem;
 $component-margin: 1rem;
 
-// Mixins para componentes
 @mixin card-component {
   background: white;
   border-radius: $component-border-radius;

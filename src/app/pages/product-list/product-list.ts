@@ -16,7 +16,6 @@ import { ProductService } from '../../services/product.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ProductCardComponent],
   templateUrl: './product-list.html',
-  // Removed styleUrl, using Tailwind
 })
 export class ProductList implements OnInit {
   private productService = inject(ProductService);
@@ -29,7 +28,6 @@ export class ProductList implements OnInit {
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
 
-  // Derived state for filtering
   searchTerm = signal<string>('');
 
   filteredProducts = computed(() => {
@@ -46,7 +44,7 @@ export class ProductList implements OnInit {
 
   constructor() {
     this.searchForm = this.fb.group({
-      searchTerm: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      searchTerm: new FormControl('', [Validators.minLength(3)]),
     });
   }
 
@@ -62,9 +60,9 @@ export class ProductList implements OnInit {
       },
     });
 
-    // Subscribe to search form changes to update signal
+    // Suscribirse a cambios del formulario de búsqueda para actualizar signal
     this.searchForm.get('searchTerm')?.valueChanges.subscribe(val => {
-      // Only filter if valid or empty (reset)
+      // Solo filtrar si es válido o vacío (resetear)
       if (this.searchForm.valid || val === '') {
         this.searchTerm.set(val || '');
       }

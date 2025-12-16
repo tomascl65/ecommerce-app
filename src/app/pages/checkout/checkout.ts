@@ -30,9 +30,9 @@ export class CheckoutComponent {
       this.loading = true;
       this.error = null;
 
-      // Simulate API call
+      // Simula API call
       setTimeout(() => {
-        // Random success/failure for demonstration (mostly success)
+        // Random success/failure
         if (Math.random() > 0.1) {
           this.success = true;
           this.cartStore.clearCart();

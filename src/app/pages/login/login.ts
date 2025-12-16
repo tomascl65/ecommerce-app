@@ -33,7 +33,7 @@ export class Login {
       // Simular login exitoso
       const { email } = this.loginForm.value;
 
-      // Guardar token localStorage
+      // Guardar token
       this.authService.setToken('simulated_token_123');
 
       // Redirigir
@@ -42,7 +42,7 @@ export class Login {
         this.isSubmitting = false;
       }, 1000);
     } else {
-      // Marcar todos los campos como tocados para mostrar errores
+      // Marcar los campos como tocados para mostrar errores
       this.markFormGroupTouched();
     }
   }

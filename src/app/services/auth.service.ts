@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor() {}
 
-  // Establece un token
+  // Establece token
   setToken(token: string): void {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(this.TOKEN_KEY, token);
@@ -20,7 +20,7 @@ export class AuthService {
     }
   }
 
-  // Obtiene el token
+  // Obtiene token
   getToken(): string | null {
     if (typeof window !== 'undefined') {
       return window.localStorage.getItem(this.TOKEN_KEY);
@@ -33,7 +33,7 @@ export class AuthService {
     return this.hasToken();
   }
 
-  // Elimina el token (logout)
+  // Elimina token (logout)
   logout(): void {
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem(this.TOKEN_KEY);
@@ -41,7 +41,7 @@ export class AuthService {
     }
   }
 
-  // Verifica internamente si existe un token
+  // Verifica si existe token
   private hasToken(): boolean {
     return typeof window !== 'undefined' && window.localStorage.getItem(this.TOKEN_KEY) !== null;
   }

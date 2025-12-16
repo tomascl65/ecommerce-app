@@ -1,11 +1,7 @@
-// Estilos SCSS para directivas
-
-// Variables para directivas
 $directive-primary: #28a745;
 $directive-secondary: #17a2b8;
 $directive-warning: #ffc107;
 
-// Mixins para directivas
 @mixin directive-demo-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -32,7 +28,6 @@ $directive-warning: #ffc107;
   }
 }
 
-// Ejemplo simple
 .simple-directive-btn {
   @include directive-button($directive-secondary);
   margin-bottom: 1rem;

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { from, map, mergeMap, Observable, toArray } from 'rxjs';
 import { Product, ProductWithDetails } from '../models/product.model';
 
@@ -8,8 +8,7 @@ import { Product, ProductWithDetails } from '../models/product.model';
 })
 export class ProductService {
   private apiUrl = 'https://fakestoreapi.com/products';
-
-  constructor(private _http: HttpClient) {}
+  private _http = inject(HttpClient);
 
   getProducts(): Observable<Product[]> {
     return this._http.get<Product[]>(this.apiUrl);

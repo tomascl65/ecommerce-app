@@ -9,7 +9,6 @@ import { CartStore } from '../../state/cart.store';
   standalone: true,
   imports: [CommonModule, ShortDescriptionPipe],
   templateUrl: './product-card.html',
-  // Removed styleUrl since we use Tailwind
 })
 export class ProductCardComponent {
   @Input() product!: Product;

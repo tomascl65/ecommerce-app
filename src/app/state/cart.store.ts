@@ -38,7 +38,7 @@ export class CartStore {
 
   private initializeStorage() {
     if (isPlatformBrowser(this.platformId)) {
-      // Load from localStorage
+      // Obtiene desde localStorage
       const stored = localStorage?.getItem('cart_storage');
       if (stored) {
         try {
@@ -48,13 +48,12 @@ export class CartStore {
         }
       }
 
-      // Save to localStorage on change
+      // Guarda a localStorage cuando hay cambio
       effect(() => {
         const items = this._items();
         localStorage?.setItem('cart_storage', JSON.stringify(items));
       });
 
-      // Sync with other tabs
       const handleStorage = (event: StorageEvent) => {
         if (event.key === 'cart_storage' && event.newValue) {
           try {
