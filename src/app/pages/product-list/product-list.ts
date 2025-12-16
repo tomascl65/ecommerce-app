@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,8 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ProductCardComponent } from '../../components/product-card/product-card';
-import { Product } from '../../models/product.model';
-import { ProductService } from '../../services/product.service';
+import { ProductStore } from '../../state/product.store';
 
 @Component({
   selector: 'app-product-list',
@@ -18,29 +17,14 @@ import { ProductService } from '../../services/product.service';
   templateUrl: './product-list.html',
 })
 export class ProductList implements OnInit {
-  private productService = inject(ProductService);
+  readonly store = inject(ProductStore);
   private fb = inject(FormBuilder);
 
   searchForm: FormGroup;
 
-  // State
-  products = signal<Product[]>([]);
-  loading = signal<boolean>(true);
-  error = signal<string | null>(null);
-
-  searchTerm = signal<string>('');
-
-  filteredProducts = computed(() => {
-    const term = this.searchTerm().toLowerCase();
-    const products = this.products();
-    if (!term) return products;
-    return products.filter(
-      p =>
-        p.title.toLowerCase().includes(term) ||
-        p.description.toLowerCase().includes(term) ||
-        p.category.toLowerCase().includes(term)
-    );
-  });
+  loading = this.store.isLoading;
+  error = this.store.error;
+  filteredProducts = this.store.filteredProducts;
 
   constructor() {
     this.searchForm = this.fb.group({
@@ -49,22 +33,13 @@ export class ProductList implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe({
-      next: data => {
-        this.products.set(data);
-        this.loading.set(false);
-      },
-      error: err => {
-        this.error.set('Error al cargar productos. Por favor intenta mas tarde.');
-        this.loading.set(false);
-      },
-    });
+    this.store.loadProducts();
 
-    // Suscribirse a cambios del formulario de búsqueda para actualizar signal
+    // Suscribirse a cambios del formulario de búsqueda para actualizar store
     this.searchForm.get('searchTerm')?.valueChanges.subscribe(val => {
       // Solo filtrar si es válido o vacío (resetear)
       if (this.searchForm.valid || val === '') {
-        this.searchTerm.set(val || '');
+        this.store.updateFilter(val || '');
       }
     });
   }
@@ -75,7 +50,7 @@ export class ProductList implements OnInit {
 
   onSearch(): void {
     if (this.searchForm.valid) {
-      this.searchTerm.set(this.searchForm.get('searchTerm')?.value);
+      this.store.updateFilter(this.searchForm.get('searchTerm')?.value);
     }
   }
 }
